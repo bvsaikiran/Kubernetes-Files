@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webs
+  labels:
+    tier: frontend
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: httpd
+        image: nginx
+        ports:
+        - name: ports
+          containerPort: 80
+          protocol: TCP
